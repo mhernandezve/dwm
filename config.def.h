@@ -12,6 +12,11 @@ static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
 static const char col_cyan[]        = "#005577";
+
+static const char *upvol[]   = { "amixer", "set", "Master", "3+",     NULL };
+static const char *downvol[] = { "amixer", "set", "Master", "3-",     NULL };
+static const char *mutevol[] = { "amixer", "set", "Master", "toggle", NULL };
+
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
@@ -28,6 +33,7 @@ static const Rule rules[] = {
 	 */
 	/* class       instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",      NULL,       NULL,       0,            1,           -1 },
+	{ "KeePassXC", NULL,       NULL,       0,            1,           -1 },
 	{ "Chromium",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
@@ -95,6 +101,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+  { MODKEY,                       XK_F10,    spawn,          {.v = upvol   } },
+	{ MODKEY,                       XK_F9,     spawn,          {.v = downvol } },
+	{ MODKEY,                       XK_F8,     spawn,          {.v = mutevol } },
 };
 
 /* button definitions */
